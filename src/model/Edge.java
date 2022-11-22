@@ -12,16 +12,21 @@ public class Edge {
         this.weight = weight;
     }
 
-    private Vertex getVertex() {
+    public Vertex getVertex() {
         return this.vertex;
     }
 
-    private double getWeight() {
+    public double getWeight() {
         return this.weight;
     }
 
     public Edge(Vertex vertex, double weight) {
         setVertex(vertex);
         setWeight(weight);
+    }
+
+    @Override
+    public String toString() {
+        return "vertex=" + vertex + ", weight=" + weight;
     }
 }

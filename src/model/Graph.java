@@ -20,7 +20,7 @@ public class Graph {
         return this.isDirected;
     }
 
-    private HashMap<Vertex, List<Edge>> getVertices() {
+    public HashMap<Vertex, List<Edge>> getVertices() {
         return this.vertices;
     }
 
@@ -35,9 +35,13 @@ public class Graph {
     public void addEdge(Vertex vertexFrom, Vertex vertexTo, double weight) {
         vertices.get(vertexFrom).add(new Edge(vertexTo, weight));
 
-        if(!isDirected()) {
+        if (!isDirected()) {
             vertices.get(vertexTo).add(new Edge(vertexFrom, weight));
         }
+    }
+
+    public int getNumberOfVertex() {
+        return vertices.size();
     }
 
 }

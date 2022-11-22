@@ -16,6 +16,11 @@ public class Vertex {
     }
 
     @Override
+    public String toString() {
+        return label;
+    }
+
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -25,13 +30,17 @@ public class Vertex {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if(this.getClass() != obj.getClass()) return false;
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (this.getClass() != obj.getClass())
+            return false;
 
         Vertex other = (Vertex) obj;
-        if(this.getLabel() == null) {
+        if (this.getLabel() == null) {
             return other.getLabel() == null;
-        } else return getLabel().equals(other.getLabel());
+        } else
+            return getLabel().equals(other.getLabel());
     }
 }
