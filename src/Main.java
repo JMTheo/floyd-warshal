@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
         Graph graph = LoadData.fileToGraph("src/data/data.txt");
-        FloydWarshal floydWarshal = new FloydWarshal(graph);
-        System.out.println("opa!");
+
+        new FloydWarshal(graph);
     }
 }

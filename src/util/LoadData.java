@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LoadData {
     public static Graph fileToGraph(String filePath) {
@@ -39,7 +40,7 @@ public class LoadData {
 
         try {
             BufferedReader mBuffer = new BufferedReader(new FileReader(filePath));
-            mList = mBuffer.lines().toList();
+            mList = mBuffer.lines().collect(Collectors.toList());
             mBuffer.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
