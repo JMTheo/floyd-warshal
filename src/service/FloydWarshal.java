@@ -9,24 +9,26 @@ import model.Vertex;
 
 public class FloydWarshal {
   private double[][] minDistance;
+  private double[][] graphSentence;
   private List<Vertex> listVertex;
 
   public FloydWarshal(Graph graph) {
     this.listVertex = new ArrayList<>(graph.getVertices().keySet());
     this.minDistance = new double[listVertex.size()][listVertex.size()];
+    this.graphSentence = new double[listVertex.size()][listVertex.size()];
 
     for (int i = 0; i < listVertex.size(); i++) {
       for (int j = 0; j < listVertex.size(); j++) {
         minDistance[i][j] = Integer.MAX_VALUE;
+        graphSentence[i][j] = 0;
       }
       minDistance[i][i] = 0;
+      graphSentence[i][i] = i;
     }
 
     instanceMinDistance(graph);
 
-    showMatrixResult();
-
-    
+    showMatrixResult();    
   }
 
   private void instanceMinDistance(Graph graph) {
@@ -40,6 +42,7 @@ public class FloydWarshal {
         System.out.println(vertex + " " + edge.toString());
 
         minDistance[listVertex.indexOf(vertex)][listVertex.indexOf(edge.getVertex())] = edge.getWeight();
+        graphSentence[listVertex.indexOf(vertex)][listVertex.indexOf(edge.getVertex())] = edge.getWeight();
       }
     }
 
@@ -54,6 +57,7 @@ public class FloydWarshal {
         for (int j = 0; j < listVertex.size(); j++) {
           if ((minDistance[i][k] + minDistance[k][j]) < minDistance[i][j]) {
             minDistance[i][j] = minDistance[i][k] + minDistance[k][j];
+            graphSentence[i][j] = graphSentence[i][k];
           }
         }
       }
@@ -64,10 +68,18 @@ public class FloydWarshal {
     System.out.println("Matriz resultante");
 
     for (int i = 0; i < listVertex.size(); i++) {
-      System.out.println(listVertex.get(i).getLabel());
-
       for (int j = 0; j < listVertex.size(); j++) {
         System.out.print(minDistance[i][j] + "\t");
+      }
+
+      System.out.println("\n");
+    }
+
+    System.out.println("Percursos resultante");
+
+    for (int i = 0; i < listVertex.size(); i++) {
+      for (int j = 0; j < listVertex.size(); j++) {
+        System.out.print(graphSentence[i][j] + "\t");
       }
 
       System.out.println("\n");
