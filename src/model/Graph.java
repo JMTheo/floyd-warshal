@@ -12,10 +12,6 @@ public class Graph {
         this.isDirected = directed;
     }
 
-    private void setVertices(HashMap<Vertex, List<Edge>> vertices) {
-        this.vertices = vertices;
-    }
-
     private boolean isDirected() {
         return this.isDirected;
     }
